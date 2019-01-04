@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="如果问,指针需要什么才能学会?  我想,一部电话就够了.">
+<meta name="keywords" content="招式,经典,C语言,指针,入门到精通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C指针:指点江山">
+<meta property="og:url" content="http://moss.nodie.ink/archives/good-at-pointers/index.html">
+<meta property="og:site_name" content="M-055号">
+<meta property="og:description" content="如果问,指针需要什么才能学会?  我想,一部电话就够了.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/01/04/5c2efcd12621b.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/01/04/5c2efbb865090.jpg">
+<meta property="og:image" content="https://t.cn/E4zP6DZ">
+<meta property="og:image" content="http://t.cn/E4zPNwI">
+<meta property="og:image" content="https://t.cn/E4zPHXV">
+<meta property="og:image" content="https://t.cn/E4zPmXR">
+<meta property="og:updated_time" content="2019-01-04T07:56:32.346Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C指针:指点江山">
+<meta name="twitter:description" content="如果问,指针需要什么才能学会?  我想,一部电话就够了.">
+<meta name="twitter:image" content="https://i.loli.net/2019/01/04/5c2efcd12621b.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="M-055号" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://moss.nodie.ink/archives/good-at-pointers/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>C指针:指点江山 | M-055号</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a288c6ba5fc3fa3c2fe21aa5919a6c82";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">M-055号</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://moss.nodie.ink/archives/good-at-pointers/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Moss">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="M-055号">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C指针:指点江山
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-01 08:00:00" itemprop="dateCreated datePublished" datetime="2019-01-01T08:00:00+08:00">2019-01-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-04 15:56:32" itemprop="dateModified" datetime="2019-01-04T15:56:32+08:00">2019-01-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/招式/" itemprop="url" rel="index"><span itemprop="name">招式</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/招式/经典/" itemprop="url" rel="index"><span itemprop="name">经典</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/archives/good-at-pointers/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/archives/good-at-pointers/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><p>如果问,指针需要什么才能学会?</p>
+</li>
+<li><p>我想,一部电话就够了.</p>
+</li>
+</ul>
+<a id="more"></a>
+<p>欢迎跳过婆婆妈妈吗的环节,点我传送到!!!正文!!!</p>
+<h1 id="照常唠嗑"><a href="#照常唠嗑" class="headerlink" title="照常唠嗑"></a>照常唠嗑</h1><p>去年(2018年),在学校某实验室中我做了一次公开分享,完成了&lt;&lt;指针:兰花指到弹指神通&gt;&gt;.第一稿通过提出指针模型让很多同学重新认识了指针和C语言.年终总结的时候,我再次回顾我的文章,发现它只能起到启发理解作用,但文章缺少了系统条理性和易理解性.</p>
+<p><img src="https://i.loli.net/2019/01/04/5c2efcd12621b.jpg" alt="u=2712757308,2019535597&amp;fm=26&amp;gp=0.jpg"></p>
+<p>于是我把&lt;&lt;指针:兰花指到弹指神通&gt;&gt;的第二稿&lt;&lt;C指针:指点江山&gt;&gt;列入了2019的计划中去,希望在不降低文章的幽默性的前提下,将指针的理解层次进一步深化.</p>
+<p><img src="https://i.loli.net/2019/01/04/5c2efbb865090.jpg" alt="u=3316908823,1055879217&amp;fm=26&amp;gp=0[1].jpg"></p>
+<p>本稿由莫斯担任主编.具体参加本稿编写的有莫斯莫死.全稿由莫斯莫死统稿并审定.限于(咸鱼)水平和时间,书中难免有纰漏之处,敬请谅解.殷切期待读者和专家学者批评赐教.</p>
+<h2 id="关于上一稿"><a href="#关于上一稿" class="headerlink" title="关于上一稿"></a>关于上一稿</h2><p>如果让我评价上一稿的话,一个词:<strong>狗屁不通</strong></p>
+<h2 id="恐惧起源"><a href="#恐惧起源" class="headerlink" title="恐惧起源"></a>恐惧起源</h2><p>为什么对指针指针感到恐惧?</p>
+<p>事实上,对任何未知的事物我们都会感到恐惧.</p>
+<p>指针方便了计算机找到以它为地址的内存单元.</p>
+<p>内存单元,地址,计算机…一个个生僻的名词.</p>
+<p>现在你应该知道为什么你总是理解不了指针了吗?</p>
+<p>你以为是背景知识不够,不,并不是!</p>
+<p>因为这些名词哪条和你有关系?</p>
+<p>本文完</p>
+<p>开个玩笑,指针确实和我们关系不太大,因为他方便的计算机而并非使用计算机的人,所以在其他程序设计语言中你很少会看到出现指针这么一说.</p>
+<p>所以在传统的学习指针过程中,教材把你当成计算机去教,你也真敢跟教才着去学,那当然最后竹篮打水一切皆空.</p>
+<p>无论是考试也好,工作也罢,知识要为自己服务,自己要最终为人民服务,投身到社会主义建设的浪潮中去.</p>
+<h2 id="宇宙中最伟大的神"><a href="#宇宙中最伟大的神" class="headerlink" title="宇宙中最伟大的神"></a>宇宙中最伟大的神</h2><p>林俊杰的不为谁而作的歌MV最后讲到,宇宙中最伟大的神和最渺小的神同名,他们叫做谢谢.</p>
+<p>在这里感谢所有为本稿编写做出贡献的人.</p>
+<p>感谢来听我讲课的同学们，他们帮助我发现错误，提出了改进意见，并在教学过程忍受着草稿形式的教材。他们对我的作品反应向我提供了有益的帮助。  </p>
+<p>我还要感谢我们班级的管理人员，校科协的管理人员，Python大数据实验室的管理人员，他们提供给我了一次次展示自己的机会，提出了许多有价值的建议。  </p>
+<p>啰啰嗦嗦终于把唠嗑部分写完了.如果您看着烦,别抱怨我写这部分和您有同样的烦恼!   </p>
+<p align="right">莫斯莫死(MossNoDie)</p><br><p align="right"><a href="mailto:moss@nodie.ink" target="_blank" rel="noopener">moss@nodie.ink</a></p>
+
+
+<h1 id="chapter-1-name-”愤怒的送餐员-0”"><a href="#chapter-1-name-”愤怒的送餐员-0”" class="headerlink" title="chapter[1].name=”愤怒的送餐员\0”"></a><code>chapter[1].name=”愤怒的送餐员\0”</code></h1><p>实验室的一个朋友李刚刚码了一上午代码，有些饿了，于是在网上定了一个外卖，送餐员给他打电话问送到哪时。“送到一个黑衣服黑裤子的人手里。”李刚刚说。送餐员气愤的挂掉了电话。<br><img src="https://t.cn/E4zP6DZ" alt="愤怒的送餐员"></p>
+<h2 id="chapter-1-gt-node-name-”李刚刚的故事-0”"><a href="#chapter-1-gt-node-name-”李刚刚的故事-0”" class="headerlink" title="(chapter+1)-&gt;(node).name=”李刚刚的故事\0”"></a><code>(chapter+1)-&gt;(node).name=”李刚刚的故事\0”</code></h2><p>在现实生活中，上面的故事显然是不符合常理的。现在，我们抛弃现实生活中的实际。我们世界上假设只有两个人。<br>这两个人的衣装是不同的，我们显然可以根据这种特征去定位一个人。但是人数增多到一个量级后我们就不能根据人的衣装甚至名字来找到他。  </p>
+<h2 id="chapter-1-gt-node-1-name-”送餐员的需要-0”"><a href="#chapter-1-gt-node-1-name-”送餐员的需要-0”" class="headerlink" title="(chapter+1)-&gt;(node+1).name=”送餐员的需要\0”"></a><code>(chapter+1)-&gt;(node+1).name=”送餐员的需要\0”</code></h2><p>我不禁在想，送餐员需要一种可以定位到人的信息，这种信息是什么呢？我们能否根据这种信息具有的特性来反馈给送餐员呢？<br>我总结了一下这类信息，发现他们具有以下两个性质：   </p>
+<ul>
+<li>确定性</li>
+<li>唯一性</li>
+</ul>
+<h2 id="chapter-1-gt-node-2-name-”确定唯一的信息-0”-4"><a href="#chapter-1-gt-node-2-name-”确定唯一的信息-0”-4" class="headerlink" title="(chapter+1)-&gt;(node+2).name=”确定唯一的信息\0”    4"></a><code>(chapter+1)-&gt;(node+2).name=”确定唯一的信息\0”    4</code></h2><p>这种信息到底是什么？我们在日常生活中来确定一个人只需要一个具体的位置和一个可以联系到你的电话号码。当然，我们身上所有的信息也可以来确定一个人（每个人都是独一无二的）。那我们为什么不把自己所有的信息告诉送餐员呢？显然他太大了！可能你自己都不知道你自己的所有信息。</p>
+<h1 id="chapter-2-name-”程序中的地址-0”"><a href="#chapter-2-name-”程序中的地址-0”" class="headerlink" title="chapter[2].name=”程序中的地址\0”"></a><code>chapter[2].name=”程序中的地址\0”</code></h1><p>想一想在编写计算机程序中为了找到一个地址，你会怎么做。</p>
+<h2 id="chapter-2-gt-node-name-”取地址-amp-0”"><a href="#chapter-2-gt-node-name-”取地址-amp-0”" class="headerlink" title="(chapter+2)-&gt;(node).name=”取地址\&amp;\0”"></a><code>(chapter+2)-&gt;(node).name=”取地址\&amp;\0”</code></h2><p>当然在计算机中我们为了修改一个数组中的数据将数组的全部元素作为一个参数去传入函数中是不可以接受的（他太缓慢了），那为什么之前我们写程序中传入了数组也没有感觉程序运行的缓慢。有两个原因：  </p>
+<ul>
+<li>数组长度太小（100以内？）</li>
+<li>在c语言中，数组名就是地址（没想到吧？）  </li>
+</ul>
+<p>于是我们需要传入数组的地址，还好在许多高级语言中把“&amp;”规定为取地址符，使用它他可以获取到任意一个变量在计算机中的位置。 </p>
+<h2 id="chapter-2-gt-node-1-name-”间接访问-0”"><a href="#chapter-2-gt-node-1-name-”间接访问-0”" class="headerlink" title="(chapter+2)-&gt;(node+1).name=”间接访问\*\0”"></a><code>(chapter+2)-&gt;(node+1).name=”间接访问\*\0”</code></h2><p>我们拿到一个地址后，这是一个整数型的数字，他是某一块内存的编号，通过“*”可以针对这个编号去访问计算机内存上的内容。也就是说我们想传递一个超大数组的时候，并不需要将这个超大元素传过去，只需要把这个超大数组的首地址地址传入，在函数内需要访问时，我们再去访问他即可。</p>
+<h1 id="chapter-3-name-”指针模型-0”"><a href="#chapter-3-name-”指针模型-0”" class="headerlink" title="chapter[3].name=”指针模型\0”"></a><code>chapter[3].name=”指针模型\0”</code></h1><p>以编程者的方式看待程序中的变量  </p>
+<h2 id="chapter-3-gt-node-name-”思维转变-0”"><a href="#chapter-3-gt-node-name-”思维转变-0”" class="headerlink" title="(chapter+3)-&gt;(node).name=”思维转变\0”"></a><code>(chapter+3)-&gt;(node).name=”思维转变\0”</code></h2><p>以前在学习这部分知识的时候，教科书上引导我们使用计算机的方式去理解指针，我们才会越来越糊涂，现在我们需要转变一下思维，以编程者的方式去重新看待指针。  </p>
+<p><strong><em>我曾不止一次说过思维的转变，才是化繁为简的最终奥义！</em></strong>  </p>
+<h2 id="chapter-3-gt-node-1-name-”简单模型-0”"><a href="#chapter-3-gt-node-1-name-”简单模型-0”" class="headerlink" title="(chapter+3)-&gt;(node+1).name=”简单模型\0”"></a><code>(chapter+3)-&gt;(node+1).name=”简单模型\0”</code></h2><p>当我们尝试声明一个变量，现在这个变量在我们的视角里是这样的。<br> <img src="http://t.cn/E4zPNwI" alt="简单模型"></p>
+<p>实线表示我们知道的内容，虚线代表实际上存在，但是我们不知道的内容，因为这个内存位置是计算机在内存中寻找到一块合适的位置，申请出来的。也就是当我们在程序中int a=5的时候，我们现在只知道a的值是5，对于其他内容我们是一无所知的。但是当我们想要去找到a的地址，我们想要去知道a的上下内存空间存储了什么内容的时候，我们需要使用在第三章我们提到的取地址符进行访问</p>
+<h2 id="chapter-3-gt-node-2-name-”一级指针模型-0”"><a href="#chapter-3-gt-node-2-name-”一级指针模型-0”" class="headerlink" title="(chapter+3)-&gt;(node+2).name=”一级指针模型\0”"></a><code>(chapter+3)-&gt;(node+2).name=”一级指针模型\0”</code></h2><p>人为的去开辟一个空间来存储这个地址，那我们说这个空间就是指针，或者说一级指针模型，那在程序中表示我在前面给回给出来，为了方便区分部分我把颜色分开了。如果●代表a这个变量，那么他的外部红色的线条框代表&amp;a。指针模型与他类似，我们用*a代表●，而外部红色是a。@他就像把之前模型反过来表示的一样。<br> <img src="https://t.cn/E4zPHXV" alt="一级指针模型"></p>
+<h2 id="chapter-3-gt-node-3-name-”二级多级指针模型-0”"><a href="#chapter-3-gt-node-3-name-”二级多级指针模型-0”" class="headerlink" title="(chapter+3)-&gt;(node+3).name=”二级多级指针模型\0”"></a><code>(chapter+3)-&gt;(node+3).name=”二级多级指针模型\0”</code></h2><p>仿照上述变换，加一层指针的话，应该变成如下图所示：<br> <img src="https://t.cn/E4zPmXR" alt="二级多级指针模型"></p>
+<p>此后无论多少级的指针均可以用这个模型来表示了。我常常把他比作大娃娃里面的小娃娃那个玩具一样一层一层的，我把指针模型的界面给大家展示出来了，其实我们把图像变成立体图应该也可以想得通。  </p>
+<h1 id="chapter-4-name-”换不过来的交换-0”"><a href="#chapter-4-name-”换不过来的交换-0”" class="headerlink" title="chapter[4].name=”换不过来的交换\0”"></a><code>chapter[4].name=”换不过来的交换\0”</code></h1><p>这块我们会使用指针进行一些程序开发，我们像大多数人一样以swap（交换函数）为例子，开始我们的实战。  </p>
+<h2 id="chapter-4-gt-node-name-”最简单的交换-0”"><a href="#chapter-4-gt-node-name-”最简单的交换-0”" class="headerlink" title="(chapter+4)-&gt;(node).name=”最简单的交换\0”"></a><code>(chapter+4)-&gt;(node).name=”最简单的交换\0”</code></h2><p>下面是一个最简单的交换例子1，因为不涉及到参数，我们只需要显示的去改变a和b的值即可。  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap_demo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">1</span>, b = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> *aptr = &amp;a, *bptr = &amp;b;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"value of a is %d,adress of a is %p\n"</span>, a, aptr);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"value of b is %d,adress of b is %p\n"</span>, b, bptr);</span><br><span class="line">    *aptr = <span class="number">2</span>;</span><br><span class="line">    *bptr = <span class="number">1</span>; </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"value of a is %d,adress of a is %p\n"</span>, a, aptr);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"value of b is %d,adress of b is %p\n"</span>, b, bptr);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">这只是个热身，我们先不要着急继续，我们先思考一下，我们到底在让什么进行交换，是值，地址还是指针的地址，很多同学因为这个不清楚而导致无法写出来程序。  </span><br><span class="line"></span><br><span class="line">对了，我们只是在交换两个变量的值，所以不按照我的写法你自己是不是也可以写出来一个简单的例子呢？  </span><br><span class="line"></span><br><span class="line">## `(chapter+<span class="number">4</span>)-&gt;(node+<span class="number">1</span>).name=”函数的交换\<span class="number">0</span>”`</span><br><span class="line">试想一下这种情况，你要把两个变量在函数里进行交换，但是函数中传入的参数并不会让你完成这种交换，因为作为参数在函数结束时是不会发生改变的，c语言中为了解决这个问题提供的地址传入的方式，设想一下，我们传入了两个数的地址，而在函数体内是对他们地址所指向的值进行交换，这样既不会改变参数中的值又可以完成地址的交换了。  </span><br><span class="line"></span><br><span class="line">下面我给出函数：  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```c</span><br><span class="line"><span class="keyword">void</span> swap_function(<span class="keyword">int</span> *p1, <span class="keyword">int</span> *p2)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> c = *p1;</span><br><span class="line">  *p1 = *p2;</span><br><span class="line">  *p2 = c;</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="chapter-4-gt-node-2-name-”地址的交换-0”"><a href="#chapter-4-gt-node-2-name-”地址的交换-0”" class="headerlink" title="(chapter+4)-&gt;(node+2).name=”地址的交换\0”"></a><code>(chapter+4)-&gt;(node+2).name=”地址的交换\0”</code></h2><p>那我们既然通过传入地址参数改变了值，当我们想改变地址的时候应该传入什么呢？因为函数执行结束不会改变参数的值，那我们只好传入地址的地址，这样可能会有点难以理解，我们我们可以应用我刚刚提出来的模型去想下，我们传入的地址只是为了改变我们要改变的地址，取道我们要改变的地址来改变。这样可能一时难以理解，多画图相信你可以熟练掌握。我这里给出地址交换的源码。看看你和我想的是否一样。  </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap_adress_function</span><span class="params">(<span class="keyword">int</span> **a, <span class="keyword">int</span> **b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> *c = *a;</span><br><span class="line">  *a = *b;</span><br><span class="line">  *b = c;</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="chapter-5-name-”字符指针-0”"><a href="#chapter-5-name-”字符指针-0”" class="headerlink" title="chapter[5].name=”字符指针\0”"></a><code>chapter[5].name=”字符指针\0”</code></h1><h2 id="chapter-5-gt-node-name-”详解-0”"><a href="#chapter-5-gt-node-name-”详解-0”" class="headerlink" title="(chapter+5)-&gt;(node).name=”详解\0”"></a><code>(chapter+5)-&gt;(node).name=”详解\0”</code></h2><p>我们经常用到char* a=“ABC\0”那么这句好话到底是什么意思呢？以这个为例子<br>我们要输出ABC怎么实现。我们想取道B字母怎么实现。利用指针模型，我们知道a是一个指针变量，他存储着A字符的地址，他的下一个地址存放的是B，同理他的下下个地址单元存放的是C。c语言怎么去实现分配单元空间呢？‘\0‘表示一个字符串的结束，无论你申请多大的空间，只要字符串中出现了‘\0‘这个指针就停止了，这也就是为什么你申请一个100长度的数组，调用strlen函数时他总是可以传给你这个字符串的长度而不是100。同时，我们想要在键盘上输入一个字符串没有办法输入‘\0‘怎么办？在c语言中，我们要输入字符串用’%s’来作为格式化输入，程序会为我们自动补充‘\0‘。</p>
+<h2 id="chapter-5-gt-node-1-name-”寻找大兵雷恩-0”"><a href="#chapter-5-gt-node-1-name-”寻找大兵雷恩-0”" class="headerlink" title="(chapter+5)-&gt;(node+1).name=”寻找大兵雷恩\0”"></a><code>(chapter+5)-&gt;(node+1).name=”寻找大兵雷恩\0”</code></h2><p>我们想要实现在一个支付床str里面找到char find这个字符该怎么办呢？你可以先思考一下，我给出我的解决方案。</p>
+<p>他非常简单，仅仅使用res来保存现在字符串的未知，当遍历完字符串依然没有我们需要的字符时，我们将-1返回即可。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find_char</span><span class="params">(<span class="keyword">char</span> *str, <span class="keyword">char</span> find)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> res = <span class="number">-1</span>;<span class="comment">//计数器</span></span><br><span class="line">  <span class="keyword">while</span> (str++)</span><br><span class="line">  &#123;</span><br><span class="line">++res;</span><br><span class="line">    <span class="keyword">if</span> ((*str) == find)<span class="comment">//如果找到</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ((*str) == <span class="string">'\0'</span>)<span class="comment">//退出条件</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-404</span>;<span class="comment">//其他情况</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="chapter-6-name-”其他案例-0”"><a href="#chapter-6-name-”其他案例-0”" class="headerlink" title="chapter[6].name=”其他案例\0”"></a><code>chapter[6].name=”其他案例\0”</code></h1><p>到这里，你的指针知识已经很强大了，我下面提供了几个练习案例，你可以先尝试自己编写，在于我的程序对应看一看你的进步吧！</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br></pre></td><td class="code"><pre><span class="line">-	前序创建和遍历二叉树</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TREESTR <span class="meta-string">"abd--e--cf--g--\0"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">left</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">right</span>;</span></span><br><span class="line">  <span class="keyword">char</span> data;</span><br><span class="line">&#125; node, *nodeptr;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">bitree</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="comment">// int num;</span></span><br><span class="line">  nodeptr root;</span><br><span class="line">&#125; bitree, *bitreeptr;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @desc 为bt树bt树封装了一棵树的root节点</span></span><br><span class="line"><span class="comment"> * - malloc创建bt</span></span><br><span class="line"><span class="comment"> * @param (bitree **) bt 树根</span></span><br><span class="line"><span class="comment"> * @return void</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">creat_bitree_head</span><span class="params">(bitreeptr btp)</span></span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @desc 为bt树创建node节点</span></span><br><span class="line"><span class="comment"> * - 为bt树创建node节点</span></span><br><span class="line"><span class="comment"> * @param (bitree) bt 树根</span></span><br><span class="line"><span class="comment"> * @param (node *) np 树根或者子树根或者叶子节点</span></span><br><span class="line"><span class="comment"> * @return void</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">creat_bitree_node</span><span class="params">(bitree bt, nodeptr *np, <span class="keyword">char</span> **elem)</span></span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @desc 通过根节点遍历二叉树！</span></span><br><span class="line"><span class="comment"> * - 通过根节点遍历二叉树！</span></span><br><span class="line"><span class="comment"> * @param (node) root 某棵树的根节点</span></span><br><span class="line"><span class="comment"> * @return void [打印前序遍历的二叉树，原则上与构造字符串相同]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_bitree</span><span class="params">(node root)</span></span>;</span><br><span class="line"><span class="comment">// 模拟main环境</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bitree_main</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bitree_main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  bitree bt;</span><br><span class="line">  <span class="keyword">char</span> *str = TREESTR;</span><br><span class="line">  creat_bitree_head(&amp;bt);</span><br><span class="line">  creat_bitree_node(bt, &amp;((&amp;bt)-&gt;root), &amp;str);</span><br><span class="line">  print_bitree(*((&amp;bt)-&gt;root));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">creat_bitree_head</span><span class="params">(bitreeptr btp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// (*btp) = (bitreeptr)malloc(sizeof(bitree));</span></span><br><span class="line">  <span class="comment">// if (!*btp)</span></span><br><span class="line">  <span class="comment">//   exit(-500);</span></span><br><span class="line">  <span class="comment">// btp-&gt;num = 1;</span></span><br><span class="line">  btp-&gt;root = (nodeptr)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">  <span class="keyword">if</span> (!btp-&gt;root)</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-500</span>);</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">creat_bitree_node</span><span class="params">(bitree bt, nodeptr *np, <span class="keyword">char</span> **elem)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">char</span> cur = *((*elem)++);</span><br><span class="line">  <span class="keyword">if</span> (cur == <span class="string">'-'</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    (*np) = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  (*np)-&gt;data = cur;</span><br><span class="line">  (*np)-&gt;left = (nodeptr)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">  <span class="keyword">if</span> (!(*np)-&gt;left)</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-500</span>);</span><br><span class="line"></span><br><span class="line">  (*np)-&gt;right = (nodeptr)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(node));</span><br><span class="line">  <span class="keyword">if</span> (!(*np)-&gt;right)</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">-500</span>);</span><br><span class="line"></span><br><span class="line">  creat_bitree_node(bt, &amp;((*np)-&gt;left), elem);</span><br><span class="line">  creat_bitree_node(bt, &amp;((*np)-&gt;right), elem);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_bitree</span><span class="params">(node n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%c"</span>, n.data);</span><br><span class="line">  <span class="keyword">if</span> (n.left)</span><br><span class="line">    print_bitree(*(n.left));</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"-"</span>);</span><br><span class="line">  <span class="keyword">if</span> (n.right)</span><br><span class="line">    print_bitree(*(n.right));</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"-"</span>);</span><br><span class="line">&#125;</span><br><span class="line">#	还记得Python类中的那个self吗？我们试着来实现一下！</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">People</span>&#123;</span></span><br><span class="line">  <span class="keyword">char</span> * name;</span><br><span class="line">  <span class="keyword">int</span> age;</span><br><span class="line">&#125;People,*_People;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 模拟main环境</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">object_main</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @desc set方法</span></span><br><span class="line"><span class="comment"> * - 实现 对 参数self结构体赋值</span></span><br><span class="line"><span class="comment"> * @param (const _People) self _People的地址 不可以在函数内发生改变</span></span><br><span class="line"><span class="comment"> * @param (char*) name 姓名的字符串</span></span><br><span class="line"><span class="comment"> * @return (void) [打印地址，不返回参数]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="keyword">const</span> _People self,<span class="keyword">char</span> * name)</span></span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @desc set方法</span></span><br><span class="line"><span class="comment"> * - 实现 对 参数self结构体赋值</span></span><br><span class="line"><span class="comment"> * @param (const _People) self _People的地址 不可以在函数内发生改变</span></span><br><span class="line"><span class="comment"> * @param (int) age 年龄</span></span><br><span class="line"><span class="comment"> * @return (void) [打印地址，不返回参数]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">const</span> _People self,<span class="keyword">int</span> age)</span></span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @desc get方法</span></span><br><span class="line"><span class="comment"> * - 实现 对 参数self结构体赋值</span></span><br><span class="line"><span class="comment"> * @param (const _People) self _People的地址 不可以在函数内发生改变</span></span><br><span class="line"><span class="comment"> * @return (char*) name 姓名的字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">getName</span><span class="params">(<span class="keyword">const</span> _People self)</span></span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @desc set方法</span></span><br><span class="line"><span class="comment"> * - 实现 对 参数self结构体赋值</span></span><br><span class="line"><span class="comment"> * @param (const _People) self _People的地址 不可以在函数内发生改变</span></span><br><span class="line"><span class="comment"> * @return (int) age 年龄</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getAge</span><span class="params">(<span class="keyword">const</span> _People self)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">object_main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  People son9wx;</span><br><span class="line">  setName(&amp;son9wx,<span class="string">"songwx\0"</span>);</span><br><span class="line">  setAge(&amp;son9wx,<span class="number">18</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"user name is %s\n"</span>,getName(&amp;son9wx));</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"user old is %d\n"</span>,getAge(&amp;son9wx));</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(_People self,<span class="keyword">char</span> * name)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  self-&gt;name = name;</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setAge</span><span class="params">(_People self,<span class="keyword">int</span> age)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  self-&gt;age = age;</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">getName</span><span class="params">(_People self)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> self-&gt;name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getAge</span><span class="params">(_People self)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">return</span> self-&gt;age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="chapter-7-name-”后记-0”"><a href="#chapter-7-name-”后记-0”" class="headerlink" title="chapter[7].name=”后记\0”"></a><code>chapter[7].name=”后记\0”</code></h1><p>我在上数据结构课程的时候老师经常与我们互动，他对我很是困惑，虽然我可以在课堂上给出正确的答案，但是我的解题过程往往惨不忍睹，当我意识到这一点的时候，我开始改变，看是注重过程，开始注重变化，这让我安静了不少，同时再回头看自己写的程序的时候，确实发现很多不好的习惯，让我无法准确找到自己的错误，经常拆了东墙补西墙。但是改正的过程很痛苦，良好的习惯在一开始就形成的话会让你事半功倍，这篇文章虽然知识不多，但是能带给你很多良好的习惯。在指针中粗心大意往往会带来不可估计的后果，野指针，访问NULL都会让你的程序出现错误，希望你在编写时先想好再去写，你需要一份完整的图示或者说明去实现你的程序，这是一种优质的习惯，也是一个优质程序员的素养。</p>
+<p>最后附上关于这本书目录的编程实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> * name;</span><br><span class="line">&#125; Node;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Chapter</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> * name;</span><br><span class="line">    Node * node;</span><br><span class="line">&#125; Chapter;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i ,j;</span><br><span class="line">    Chapter * chapter = (Chapter*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Chapter)*<span class="number">10</span>); <span class="comment">// 初始化章节</span></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i&lt;<span class="number">10</span>; i++)</span><br><span class="line">        (chapter+i)-&gt;node = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node)*<span class="number">10</span>); <span class="comment">// 初始化章节对应的小节</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">0</span>; j&lt;<span class="number">10</span>; j++)</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i&lt;<span class="number">10</span>; i++)</span><br><span class="line">            chapter[j].node[i].name = (<span class="keyword">char</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">char</span>)*<span class="number">15</span>); <span class="comment">// 初始化小节name</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i&lt;<span class="number">10</span>; i++)</span><br><span class="line">        chapter[i].name =  (<span class="keyword">char</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">char</span>)*<span class="number">15</span>); <span class="comment">// 初始化章节name</span></span><br><span class="line"></span><br><span class="line">    chapter[<span class="number">1</span>].name = <span class="string">"第一章\0"</span>; </span><br><span class="line">    chapter+<span class="number">1</span>-&gt;node[<span class="number">1</span>].name = <span class="string">"第一节\0"</span>; </span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"现在是 %s,%s\n"</span>,chapter[<span class="number">1</span>].name,(chapter+<span class="number">1</span>)-&gt;node[<span class="number">1</span>].name);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/招式/" rel="tag"><i class="fa fa-tag"></i> 招式</a>
+          
+            <a href="/tags/经典/" rel="tag"><i class="fa fa-tag"></i> 经典</a>
+          
+            <a href="/tags/C语言/" rel="tag"><i class="fa fa-tag"></i> C语言</a>
+          
+            <a href="/tags/指针/" rel="tag"><i class="fa fa-tag"></i> 指针</a>
+          
+            <a href="/tags/入门到精通/" rel="tag"><i class="fa fa-tag"></i> 入门到精通</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Moss</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/mossnodie" title="GitHub &rarr; https://github.com/mossnodie" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:moss@nodie.ink" title="E-Mail &rarr; mailto:moss@nodie.ink" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#照常唠嗑"><span class="nav-number">1.</span> <span class="nav-text">照常唠嗑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于上一稿"><span class="nav-number">1.1.</span> <span class="nav-text">关于上一稿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恐惧起源"><span class="nav-number">1.2.</span> <span class="nav-text">恐惧起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#宇宙中最伟大的神"><span class="nav-number">1.3.</span> <span class="nav-text">宇宙中最伟大的神</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-1-name-”愤怒的送餐员-0”"><span class="nav-number">2.</span> <span class="nav-text">chapter[1].name=”愤怒的送餐员\0”</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-1-gt-node-name-”李刚刚的故事-0”"><span class="nav-number">2.1.</span> <span class="nav-text">(chapter+1)-&gt;(node).name=”李刚刚的故事\0”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-1-gt-node-1-name-”送餐员的需要-0”"><span class="nav-number">2.2.</span> <span class="nav-text">(chapter+1)-&gt;(node+1).name=”送餐员的需要\0”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-1-gt-node-2-name-”确定唯一的信息-0”-4"><span class="nav-number">2.3.</span> <span class="nav-text">(chapter+1)-&gt;(node+2).name=”确定唯一的信息\0”    4</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-2-name-”程序中的地址-0”"><span class="nav-number">3.</span> <span class="nav-text">chapter[2].name=”程序中的地址\0”</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-2-gt-node-name-”取地址-amp-0”"><span class="nav-number">3.1.</span> <span class="nav-text">(chapter+2)-&gt;(node).name=”取地址\&amp;\0”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-2-gt-node-1-name-”间接访问-0”"><span class="nav-number">3.2.</span> <span class="nav-text">(chapter+2)-&gt;(node+1).name=”间接访问\*\0”</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-3-name-”指针模型-0”"><span class="nav-number">4.</span> <span class="nav-text">chapter[3].name=”指针模型\0”</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-3-gt-node-name-”思维转变-0”"><span class="nav-number">4.1.</span> <span class="nav-text">(chapter+3)-&gt;(node).name=”思维转变\0”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-3-gt-node-1-name-”简单模型-0”"><span class="nav-number">4.2.</span> <span class="nav-text">(chapter+3)-&gt;(node+1).name=”简单模型\0”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-3-gt-node-2-name-”一级指针模型-0”"><span class="nav-number">4.3.</span> <span class="nav-text">(chapter+3)-&gt;(node+2).name=”一级指针模型\0”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-3-gt-node-3-name-”二级多级指针模型-0”"><span class="nav-number">4.4.</span> <span class="nav-text">(chapter+3)-&gt;(node+3).name=”二级多级指针模型\0”</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-4-name-”换不过来的交换-0”"><span class="nav-number">5.</span> <span class="nav-text">chapter[4].name=”换不过来的交换\0”</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-4-gt-node-name-”最简单的交换-0”"><span class="nav-number">5.1.</span> <span class="nav-text">(chapter+4)-&gt;(node).name=”最简单的交换\0”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-4-gt-node-2-name-”地址的交换-0”"><span class="nav-number">5.2.</span> <span class="nav-text">(chapter+4)-&gt;(node+2).name=”地址的交换\0”</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-5-name-”字符指针-0”"><span class="nav-number">6.</span> <span class="nav-text">chapter[5].name=”字符指针\0”</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-5-gt-node-name-”详解-0”"><span class="nav-number">6.1.</span> <span class="nav-text">(chapter+5)-&gt;(node).name=”详解\0”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chapter-5-gt-node-1-name-”寻找大兵雷恩-0”"><span class="nav-number">6.2.</span> <span class="nav-text">(chapter+5)-&gt;(node+1).name=”寻找大兵雷恩\0”</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-6-name-”其他案例-0”"><span class="nav-number">7.</span> <span class="nav-text">chapter[6].name=”其他案例\0”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter-7-name-”后记-0”"><span class="nav-number">8.</span> <span class="nav-text">chapter[7].name=”后记\0”</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Moss</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: 'ihXMEVqM2oTety5PyBHaOutq-gzGzoHsz',
+      appKey: 'th2lgfv9ckfOp5JIR7rc4BGG',
+      placeholder: 'Just go go',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
