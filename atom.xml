@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://moss.nodie.ink/"/>
-  <updated>2019-01-04T07:56:32.346Z</updated>
+  <updated>2019-01-04T08:21:49.938Z</updated>
   <id>http://moss.nodie.ink/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>大学如何学好C语言</title>
+    <link href="http://moss.nodie.ink/archives/how-to-study-c-lang/"/>
+    <id>http://moss.nodie.ink/archives/how-to-study-c-lang/</id>
+    <published>2019-01-01T00:00:00.000Z</published>
+    <updated>2019-01-04T08:21:49.938Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>王国维在《人间词话》中说：“古今之成大事业、大学问者，必经过三种之境界。”    </p></blockquote><a id="more"></a><h2 id="昨夜西风凋碧树"><a href="#昨夜西风凋碧树" class="headerlink" title="昨夜西风凋碧树"></a>昨夜西风凋碧树</h2><p>PS: 对于C语言的理解，你基本正处于蒙逼阶段。  </p><p><img src="https://r.photo.store.qq.com/psb?/V146EW4F2TNx0C/N.w5OwSRPILlZiZuxA1VcfJSVq1DrwnUvEIVBoJzlG4!/r/dFIBAAAAAAAA" alt="WTF???"></p><p>以下问题你一定会遇到：    </p><ul><li>C语言是啥？？？</li><li>中文括号和英文括号竟然还有区别？？？</li><li>我照着书上敲的代码，为什么还是不能运行？？？</li><li>为什么要包含头文件，书上就没写也运行了？？？</li><li>指针？？？</li><li>···  </li></ul><p>PS:   算了，看不下去了！（合上书状）    </p><p><strong>小黑框框住的不只是你BUG百出的代码运行结果，还框住了你对于编程的仅存的那一点兴趣。</strong>  </p><p><img src="https://r.photo.store.qq.com/psb?/V146EW4F2TNx0C/9oZJQsYa85pZeuNwBXP7HsKdF2hLYdjyviTcUJTJJiw!/r/dDQBAAAAAAAA" alt="小黑框"></p><p>处于这种境界，你应该：  </p><ol><li>提高对程序的认知。<br>你正在用的QQ、微信这社交软件和办公用的Office软件等均是简单代码堆叠起来的，如果你也想写出这种软件，那就必须先练习程序这种基本功！  </li><li>跟紧老师的步伐。<br>有很多学生不去跟随老师，确实存在这种可能老师教的东西你都会了。但是如果你是因为听不懂老师讲课，还是建议你增加对程序设计学习的时间，在课堂上跟紧老师。</li></ol><h2 id="衣带渐宽终不悔"><a href="#衣带渐宽终不悔" class="headerlink" title="衣带渐宽终不悔"></a>衣带渐宽终不悔</h2><p>PS: 不管能不能看懂，终于你还是彻头彻尾看了一遍书，你对常见的问题都有解决思路了。  </p><p>你想一下，当你去解决一个已经有想法的问题的时候，你会按照你的思路来，但是结果总不是你想要的。同样的问题，你在网上查到解决方法的时候会抱怨，“为什么不是我的思路？”“这个代码我根本看不懂”“为什么他就可以出来正确的结果？”你会觉得痛苦，为什么？  </p><p>因为你遇到问题更难了，你遇到的问题规模更大了。总之，你的现有知识量达不到你的需求，而你又不想接受新的知识，所以痛苦是必然的，望你衣带渐宽终不悔，为程序设计消得人憔悴。  </p><p>看看这些问题你遇到过吗？  </p><ul><li>代码死循环，过了一会程序爆了（异常退出）！</li><li>就要用数组，指针太麻烦！</li><li>学生成绩管理系统，这么复杂！就靠这个小黑框能行吗！</li><li>完全不想听老师讲，他讲的我都会！</li><li>···</li></ul><p>你最终还是相信了那句话：<br> <em>顺序，选择，循环三种结构可解决一切问题。</em>     </p><p>这句话是对的，三种结构是可以解决一切问题，但是不代表你能运用它解决一切问题。</p><p><img src="https://r.photo.store.qq.com/psb?/V146EW4F2TNx0C/1Fa0gkV89xrl6fFymXeyFgSE6DDfOz2bBjkdFv4ojWU!/r/dL8AAAAAAAAA" alt="线性表"></p><ul><li>指针（基础）  @我写了一篇关于指针的文章</li><li>线（性表）</li><li>（二叉）树</li><li>图（论）<br>上面几种解决问题所抽象出来的数据结构，已经这种数据模型相关的算法，你都学会了吗？    </li></ul><p>处于这种境界，你应该：  </p><p>渡劫的第一境界，在同水平的同学里应该可以笑傲江湖了，但是你只能偷着乐，因为程序设计除了书本上所涉及的还有很多，许多知识（甚至是问题），只有在你去实践的时候才会蹦出来。  </p><ol><li>不写代码！<br>PS:敲代码前就要明白问题如何解决，而不是边敲代码边解决问题。这样只会让你的问题越来越多！  </li><li>可以脱离老师的步伐了<br>PS:但并不是让你去和老师对着干，而是是让你明白，老师所针对的一定都是大部分学生而不是你。 </li><li>遇到问题养成自己解决问题的好习惯<br>PS:先自己分析问题（不写代码！），试着看看其他人的代码是怎样设计的（不写代码！）最后想想自己的不足与优点（如果你自己想肯定就会有创新的！），最后，敲代码才是一种享受！（明白解决问题的逻辑是怎样的）  </li></ol><p><img src="https://r.photo.store.qq.com/psb?/V146EW4F2TNx0C/ZjCBMMZLqQHQJCs3v4nfJgnktyOmRUfbK8rIp4HV3Xw!/r/dDQBAAAAAAAA" alt="调侃"></p><h2 id="众里寻他千百度"><a href="#众里寻他千百度" class="headerlink" title="众里寻他千百度"></a>众里寻他千百度</h2><p>如果你修炼到了这个阶段，<strong>恭喜你！</strong>   </p><p>你不在去想程序中为什么报错了，而是在想这种错误是因为在设计中哪块存在缺陷。</p><p><strong><em>思维的转变，才是化繁为简的关键！</em></strong></p><p>之后，遇见<code>Java</code>，邂逅<code>SQL</code>，离开困扰你很久的的<code>小黑框</code>，还会会有点不舍。</p><p>最后送上：  </p><blockquote><p><strong>做你所爱，爱你所做！</strong></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;王国维在《人间词话》中说：“古今之成大事业、大学问者，必经过三种之境界。”    &lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="大学" scheme="http://moss.nodie.ink/categories/%E5%A4%A7%E5%AD%A6/"/>
+    
+      <category term="生活" scheme="http://moss.nodie.ink/categories/%E5%A4%A7%E5%AD%A6/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="C语言" scheme="http://moss.nodie.ink/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="大学" scheme="http://moss.nodie.ink/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+      <category term="生活" scheme="http://moss.nodie.ink/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>C指针:指点江山</title>
@@ -41,11 +71,11 @@
       <category term="经典" scheme="http://moss.nodie.ink/categories/%E6%8B%9B%E5%BC%8F/%E7%BB%8F%E5%85%B8/"/>
     
     
+      <category term="C语言" scheme="http://moss.nodie.ink/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
       <category term="招式" scheme="http://moss.nodie.ink/tags/%E6%8B%9B%E5%BC%8F/"/>
     
       <category term="经典" scheme="http://moss.nodie.ink/tags/%E7%BB%8F%E5%85%B8/"/>
-    
-      <category term="C语言" scheme="http://moss.nodie.ink/tags/C%E8%AF%AD%E8%A8%80/"/>
     
       <category term="指针" scheme="http://moss.nodie.ink/tags/%E6%8C%87%E9%92%88/"/>
     
