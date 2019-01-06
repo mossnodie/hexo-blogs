@@ -359,7 +359,7 @@
                 
               
 
-              <time title="创建时间：2019-01-06 07:52:05 / 修改时间：07:52:21" itemprop="dateCreated datePublished" datetime="2019-01-06T07:52:05+08:00">2019-01-06</time>
+              <time title="创建时间：2019-01-06 07:52:05 / 修改时间：10:39:32" itemprop="dateCreated datePublished" datetime="2019-01-06T07:52:05+08:00">2019-01-06</time>
             
 
             
@@ -417,7 +417,9 @@
 <p>任何复杂的事物都是由基础构成的，把基础掌握牢，有高于一般人的认知水平，能够类比别的领域的相似事物去学习，拥有不错的智力，学习能力自然就强了。</p>
 <p>最后是情商，这一点我想重点的说一下，学习不是一个闭门造车的过程，只有交流才能让你学的更好，才能让你理解的更为透彻，所以和人打交道所需要的情商也是很重要的。</p>
 <p>这里是我的算法仓库，同时也是算法交流仓库。日常生活中，我看过一些书后，就会将涉及到的算法发布在这个仓库，如果你有任何问题，让我知道。我们可一起去解决它。</p>
-
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><h2 id="简单桶排序（啊哈算法，第一章）"><a href="#简单桶排序（啊哈算法，第一章）" class="headerlink" title="简单桶排序（啊哈算法，第一章）"></a>简单桶排序（啊哈算法，第一章）</h2><p>简单桶排序就是开辟一个足够大空间保证了容纳你代排序数组中所有的元素，所以你需要一个待排序数组，它的长度，他的最大值。</p>
+<p>下面是我写的一个简单桶排序，它包括了对错误的处理，有一些主要注释，不理解的话你可以看着它学习一下，是一个非常健壮的算法。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">simple_buket_sort</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> *p_number_arr, <span class="keyword">int</span> length, <span class="keyword">int</span> max_elem)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// 错误处理</span></span><br><span class="line">	<span class="keyword">if</span> (max_elem &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	<span class="comment">// 开辟空间</span></span><br><span class="line">	<span class="keyword">int</span> *res_number_arr = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>) * (max_elem + <span class="number">1</span>));</span><br><span class="line">	<span class="comment">// 初始化</span></span><br><span class="line">	<span class="built_in">memset</span>(res_number_arr, <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * (max_elem + <span class="number">1</span>));</span><br><span class="line">	<span class="comment">// 主要算法</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length &amp;&amp; p_number_arr[i] &lt;= max_elem; ++i)</span><br><span class="line">		++res_number_arr[p_number_arr[i]];</span><br><span class="line">	<span class="keyword">return</span> res_number_arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
